@@ -1,0 +1,79 @@
+# Easta aplicación, crea una interfaz gráfica simple
+# para registrar reservaciones en “EL GUAYABAL DISCOTEC”.
+# Los usuarios pueden ingresar sus apellidos y nombres
+# Agregarlos a la lista y limpiar la lista si es necesario.
+
+
+# Importamos la biblioteca Tkinter con el alias tk
+import tkinter as tk
+
+
+# Definimos la clase AplicacionGUI que representa la interfaz gráfica
+class AplicacionGUI:
+# Método inicializador de la clase
+    def __init__(self, root):
+
+# Inicializamos el objeto root como la ventana principal
+        self.root = root
+# Establecemos el título de la ventana
+        self.root.title("EL GUAYABAL")
+# Establecemos las dimensiones de la ventana
+        self.root.geometry("900x1200")
+# Establecemos el color de fondo de la ventana
+        self.root.configure(background="#00a8e8")
+
+        # Diseño de la Interfaz
+# Etiqueta para mostrar un texto descriptivo
+        self.label = tk.Label(root, text="REGISTRO DE RESERVACIONES - EL GUAYABAL DISCOTEC")
+        self.label.pack(
+            fill=tk.BOTH,
+        )
+# Etiqueta para indicar el campo de entrada
+        self.label = tk.Label(root, text="APELLIDOS Y NOMBRES")
+        self.label.pack(
+            fill=tk.BOTH,
+        )
+# Campo de entrada para que el usuario ingrese sus apellidos y nombres
+        self.entry = tk.Entry(root)
+        self.entry.pack(
+            fill=tk.BOTH,
+        )
+# Botón para agregar la entrada a la lista
+        self.add_button = tk.Button(root, text="Agregar", command=self.agregar)
+        self.add_button.pack()
+
+# Botón para limpiar la lista de entradas
+        self.clear_button = tk.Button(root, text="Limpiar", command=self.limpiar)
+        self.clear_button.pack(
+            fill=tk.BOTH,
+        )
+
+# Lista para mostrar las entradas agregadas
+        self.data_listbox = tk.Listbox(root)
+        self.data_listbox.pack(
+            fill=tk.BOTH,
+        )
+
+# Funcionalidad del botón "Agregar"
+    def agregar(self):
+# Obtenemos el texto ingresado por el usuario
+        info = self.entry.get()
+# Verificamos que el texto no esté vacío
+        if info:
+# Insertamos el texto en la lista
+            self.data_listbox.insert(tk.END, info)
+            self.entry.delete(0, tk.END)
+
+# Limpiamos el campo de entrada
+    def limpiar(self):
+        self.data_listbox.delete(0, tk.END)
+
+# Eventos y ejecución
+if __name__ == "__main__":
+# Creamos una instancia de la clase Tk que representa la ventana principal
+    root = tk.Tk()
+# Creamos una instancia de la clase AplicacionGUI, pasando la ventana principal como argumento
+    app = AplicacionGUI(root)
+# Iniciamos el bucle de eventos de Tkinter
+
+    root.mainloop()
